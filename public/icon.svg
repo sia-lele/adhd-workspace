@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#79B3A7"/>
+      <stop offset="1" stop-color="#8FAE9B"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.32" cy="0.26" r="0.7">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 圆角背景 -->
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#bg)"/>
+  <rect x="0" y="0" width="512" height="512" rx="116" fill="url(#glow)"/>
+
+  <!-- 柔和投影 -->
+  <ellipse cx="256" cy="392" rx="118" ry="18" fill="#000000" opacity="0.08"/>
+
+  <!-- 大脑吉祥物 -->
+  <g>
+    <!-- 脑身 -->
+    <ellipse cx="256" cy="282" rx="120" ry="98" fill="#FBF1E2" stroke="#EBD9C4" stroke-width="6"/>
+    <circle cx="208" cy="212" r="58" fill="#FBF1E2" stroke="#EBD9C4" stroke-width="6"/>
+    <circle cx="304" cy="212" r="58" fill="#FBF1E2" stroke="#EBD9C4" stroke-width="6"/>
+    <!-- 脑纹（叶面褶皱） -->
+    <path d="M186 190 q16 -12 32 -3" fill="none" stroke="#EBD9C4" stroke-width="6" stroke-linecap="round"/>
+    <path d="M294 187 q16 -9 32 3" fill="none" stroke="#EBD9C4" stroke-width="6" stroke-linecap="round"/>
+    <path d="M236 330 q20 -16 40 0" fill="none" stroke="#EBD9C4" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- 腮红 -->
+    <circle cx="196" cy="302" r="15" fill="#F4B6A8" opacity="0.65"/>
+    <circle cx="316" cy="302" r="15" fill="#F4B6A8" opacity="0.65"/>
+    <!-- 眼睛 -->
+    <circle cx="222" cy="274" r="11" fill="#5B554C"/>
+    <circle cx="290" cy="274" r="11" fill="#5B554C"/>
+    <!-- 微笑 -->
+    <path d="M226 300 Q256 326 286 300" fill="none" stroke="#5B554C" stroke-width="9" stroke-linecap="round"/>
+  </g>
+
+  <!-- 小星星 -->
+  <path d="M398 138 L406 158 L426 166 L406 174 L398 194 L390 174 L370 166 L390 158 Z"
+        fill="#FFF3C4" stroke="#FBE08A" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="120" cy="180" r="5" fill="#FFFFFF" opacity="0.85"/>
+</svg>

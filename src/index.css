@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #fbf8f3;
+  --surface: #ffffff;
+  --ink: #44423d;
+  --ink-soft: #6b6760;
+  --ink-faint: #9c988f;
+  --stroke: #d8d3c9;
+  --sage: #8fae9b;
+  --sage-soft: #e4eee7;
+  --lilac: #cfc9e8;
+  --teal: #6fa59b;
+  --teal-deep: #557f77;
+  --teal-soft: #e6f0ee;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  margin: 0;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: contain;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* 减少动态效果全局开关 */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+}
+
+/* 柔和滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e3ddd1;
+  border-radius: 8px;
+}
+
+/* 圆圈待办基础样式 */
+.task-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  border: 2px solid var(--stroke);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  transition: all 180ms ease;
+  background: transparent;
+}
+.task-circle:hover {
+  border-color: var(--teal);
+}
+.task-circle.done {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+.task-circle.skipped {
+  border-style: dashed;
+  border-color: #cfc9bd;
+}
+.task-circle .check {
+  width: 14px;
+  height: 14px;
+  stroke: #fff;
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+.task-circle.done .check {
+  opacity: 1;
+}
+
+/* 完成任务文字柔化，不惩罚性删除 */
+.task-title.done {
+  color: var(--ink-faint);
+}
+.task-title.skipped {
+  color: var(--ink-faint);
+  text-decoration: line-through;
+  text-decoration-color: #d8d3c9;
+}
+
+/* 输入框通用 */
+.input-base {
+  width: 100%;
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+.input-base:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px var(--teal-soft);
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 150ms ease, transform 120ms ease;
+}
+.btn-primary:hover {
+  background: var(--teal-deep);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 15px;
+  transition: all 150ms ease;
+}
+.btn-ghost:hover {
+  border-color: var(--teal);
+  color: var(--teal-deep);
+}
+.btn-danger {
+  background: #b07a6e;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 15px;
+  transition: background 150ms ease, transform 120ms ease;
+}
+.btn-danger:hover {
+  background: #9c675b;
+}
+.btn-danger:active {
+  transform: scale(0.98);
+}
+
+/* 卡片 */
+.card {
+  background: var(--surface);
+  border: 1px solid #efeae1;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px -4px rgba(80, 75, 65, 0.12);
+}
+
+/* 时间指示线 */
+.now-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e6c9b8, transparent);
+}
+
+/* 抽屉动画 */
+@keyframes drawer-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.drawer-up {
+  animation: drawer-up 220ms ease-out;
+}
+
+/* 本周打卡网格 */
+.week-grid {
+  display: grid;
+  grid-template-columns: minmax(96px, 120px) repeat(7, minmax(0, 1fr));
+  gap: 4px 4px;
+  align-items: center;
+}
+
+/* 时间轴：方格纸背景（手账风格） */
+.timeline-grid {
+  background-image:
+    linear-gradient(to right, rgba(94, 108, 100, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(94, 108, 100, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  border-radius: 12px;
+}
+
+/* 时间轴任务小卡片 */
+.axis-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(94, 108, 100, 0.16);
+  box-shadow: 0 1px 2px rgba(94, 108, 100, 0.06);
+  padding: 6px 8px;
+  text-align: left;
+  min-height: 38px;
+}
+.week-cell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 22px;
+  border-radius: 7px;
+  border: 1.5px solid transparent;
+  transition: transform 120ms ease, opacity 150ms ease;
+}
+.week-cell:not(:disabled):hover {
+  transform: scale(1.1);
+}
+.week-cell:disabled {
+  cursor: default;
+}
+
+/* 今日时间轴中间分隔线（移动端） */
+.timeline-wrap {
+  position: relative;
+}
+.timeline-divider {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 50%;
+  width: 1px;
+  background: var(--stroke);
+  opacity: 0.55;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
